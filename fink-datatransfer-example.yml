@@ -1,0 +1,9 @@
+blocks: []
+content:
+- Full packet
+dates: # 9,292,872 alerts, 487.43 GB
+  startdate: '2026-02-01'
+  stopdate: '2026-03-20'
+extra_cond:
+- diaSource.diaSourceId % 113 == 0 # approximately 1%
+filters: []
