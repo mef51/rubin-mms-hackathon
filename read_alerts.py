@@ -123,11 +123,7 @@ def check_nrao(ra_query, dec_query):
     print("IRSA: None" if len(tab) == 0 else f"IRSA: Found {len(tab)} result(s)")
     # NRAO archive
     nrao_service = vo.dal.TAPService("https://data-query.nrao.edu/tap")
-    query = (
-        "SELECT * FROM tap_schema.obscore "
-        "WHERE CONTAINS(POINT('ICRS',s_ra,s_dec),"
-        "CIRCLE('ICRS'," + ra_query + "," + dec_query + "," + str(search_radius) + "))=1"
-    )
+    query="SELECT * FROM tap_schema.obscore WHERE CONTAINS(POINT('ICRS',s_ra,s_dec),CIRCLE('ICRS',"+ra_query+","+dec_query+","+str(search_radius)+"))=1" 
 
     # NRAO archive
     nrao_service = vo.dal.TAPService("https://data-query.nrao.edu/tap")
@@ -160,7 +156,7 @@ def check_nrao(ra_query, dec_query):
     unique_EBs = np.unique(output['obs_publisher_did'])
     print(f"Unique EBs: {len(unique_EBs)}")
     
-    for EB in unique_EBs:
+    for i, EB in enumerate(unique_EBs):
         EB_index = np.where(output['obs_publisher_did'] == EB)
     
         total_tos_per_EB = np.sum(output['t_exptime'][EB_index[0]])
