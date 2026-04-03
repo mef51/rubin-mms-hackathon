@@ -116,7 +116,7 @@ def slack_message(match_results, radius):
         
 if __name__ == "__main__":
     radius = 10 ## default radius (in arcsec)
-    html = 'your_data'
+    html = 'your_data' #use browser link and change "edit?" to "export?format=csv&"
     frb_name, frb_ra, frb_dec = read_transient(html)
     results = rubin_conesearch(frb_name, frb_ra, frb_dec, radius=radius)
     text = slack_message(results, radius)
